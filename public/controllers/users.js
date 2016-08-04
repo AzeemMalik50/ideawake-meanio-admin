@@ -3,11 +3,30 @@
 angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 'Menus', '$rootScope', '$http', 'Users', 'Circles',
     function($scope, Global, Menus, $rootScope, $http, Users, Circles) {
 
-        $scope.global = Global;
-        $scope.user = {};
+    $scope.global = Global;
+    $scope.user = {};
 
+    Circles.list(function(acl) {
+      $scope.availableCircles = acl;
+    });
+
+    $scope.showDescendants = function(permission) {
+      var temp = $('.ui-select-container .btn-primary').text().split(' ');
+      temp.shift(); //remove close icon
+      var selected = temp.join(' ');
+
+      if($scope.allDescendants) {
+        $scope.descendants = $scope.allDescendants[selected];
+      } else {
+        $scope.descendants = [];
+      }
+    };
+
+    $scope.selectPermission = function() {
+      $scope.descendants = [];
+      // $scope.targetedUsersCount = 0; // for(var x in $scope.challenge.permissions) {//   $scope.targetedUsersCount += $scope.challenge.permissions[x].members; // }
+    };
         Circles.mine(function(acl) {
-
             var circles = acl.allowed;
 
             $scope.userSchema = [{
@@ -28,7 +47,7 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
             }, {
                 title: 'Roles',
                 schemaKey: 'roles',
-                type: 'select',
+                type: 'uiselect',
                 options: circles,
                 inTable: true
             }, {
@@ -42,7 +61,7 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
                 type: 'password',
                 inTable: false
             }];
-            
+
         });
 
 
@@ -86,14 +105,14 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
         };
 
         $scope.update = function(user, userField) {
-            if (userField && userField === 'roles' && user.tmpRoles.indexOf('admin') !== -1 && user.roles.indexOf('admin') === -1) {
-                if (confirm('Are you sure you want to remove "admin" role?')) {
-                    user.$update();
-                } else {
-                    user.roles = user.tmpRoles;
-                }
-            } else
-                user.$update();
+            // if (userField && userField === 'roles' && user.tmpRoles.indexOf('admin') !== -1 && user.roles.indexOf('admin') === -1) {
+            //     if (confirm('Are you sure you want to remove "admin" role?')) {
+            //         user.$update();
+            //     } else {
+            //         user.roles = user.tmpRoles;
+            //     }
+            // } else
+            Users.update(user);
         };
 
         $scope.beforeSelect = function(userField, user) {
