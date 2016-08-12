@@ -5,6 +5,7 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
 
     $scope.global = Global;
     $scope.user = {};
+    $scope.availableCircles = [];
 
     Circles.list(function(acl) {
       $scope.availableCircles = acl;
@@ -24,7 +25,6 @@ angular.module('mean.admin').controller('UsersController', ['$scope', 'Global', 
 
     $scope.selectPermission = function() {
       $scope.descendants = [];
-      // $scope.targetedUsersCount = 0; // for(var x in $scope.challenge.permissions) {//   $scope.targetedUsersCount += $scope.challenge.permissions[x].members; // }
     };
         Circles.mine(function(acl) {
             var circles = acl.allowed;
