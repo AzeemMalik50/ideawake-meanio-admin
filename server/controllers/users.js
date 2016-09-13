@@ -35,7 +35,7 @@ exports.create = function(req, res, next) {
             switch (err.code) {
                 case 11000:
                 case 11001:
-                    res.status(400).send('Username already taken');
+                    res.status(400).send('Email or username already taken');
                     break;
                 default:
                     res.status(400).send('Please fill all the required fields');
