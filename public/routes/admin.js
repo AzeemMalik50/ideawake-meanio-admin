@@ -1,14 +1,16 @@
-'use strict';
-angular.module('mean.admin').config(['$stateProvider', '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('users', {
-        url: '/admin/users',
-        templateUrl: 'admin/views/users.html',
-        requiredCircles: {
-          circles: ['admin']
-        }
-      }).state('themes', {
+(function() {
+  'use strict';
+
+  angular.module('mean.admin').config(['$stateProvider', '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('users', {
+          url: '/admin/users',
+          templateUrl: 'admin/views/users.html',
+          requiredCircles: {
+            circles: ['admin']
+          }
+        }).state('themes', {
         url: '/admin/themes',
         templateUrl: 'admin/views/themes.html',
         requiredCircles: {
@@ -33,9 +35,10 @@ angular.module('mean.admin').config(['$stateProvider', '$urlRouterProvider',
           circles: ['admin']
         }
       });
-  }
+    }
   ]).config(['ngClipProvider',
-      function(ngClipProvider) {
-          ngClipProvider.setPath('../admin/assets/lib/zeroclipboard/dist/ZeroClipboard.swf');
-      }
+    function (ngClipProvider) {
+      ngClipProvider.setPath('../admin/assets/lib/zeroclipboard/dist/ZeroClipboard.swf');
+    }
   ]);
+})();
