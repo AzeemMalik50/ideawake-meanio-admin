@@ -48,7 +48,7 @@
         }, {
           title: 'Roles',
           schemaKey: 'roles',
-          type: 'select',
+          type: 'uiselect',
           options: circles,
           inTable: true
         }, {
