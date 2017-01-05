@@ -36,9 +36,5 @@
         }
       });
     }
-  ]).config(['ngClipProvider',
-    function (ngClipProvider) {
-      ngClipProvider.setPath('../admin/assets/lib/zeroclipboard/dist/ZeroClipboard.swf');
-    }
-  ]);
+  ])
 })();
