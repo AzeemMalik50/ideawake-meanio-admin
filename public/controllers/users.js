@@ -44,7 +44,7 @@
           title: 'Username',
           schemaKey: 'username',
           type: 'text',
-          inTable: true
+          inTable: false
         }, {
           title: 'Roles',
           schemaKey: 'roles',
