@@ -59,6 +59,7 @@ Admin.register(function (app, auth, database, circles) {
   circles.registerCircle('can delete content', ['admin']);
   circles.registerCircle('can edit content', ['admin']);
   circles.registerCircle('can create content', ['admin']);
+  circles.registerCircle('steering committee', null, 'Steering Committee');
 
   return Admin;
 });
