@@ -60,6 +60,7 @@ Admin.register(function (app, auth, database, circles) {
   circles.registerCircle('can edit content', ['admin']);
   circles.registerCircle('can create content', ['admin']);
   circles.registerCircle('steering committee', null, 'Steering Committee');
+  circles.registerCircle('moderators', null, 'Moderators');
 
   return Admin;
 });
